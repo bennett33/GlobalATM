@@ -1,0 +1,114 @@
+@model User
+<div id="game-background">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/HnipUL0xo0I?start=22 &autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div id="game-container">
+        <h1 class="text-center">Security Questions</h1>
+        <form asp-controller="Game" asp-action="GameVerifyUser">
+            <div id="faveColor" class="card shadow rounded mx-auto w-25" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title text-dark text-center">What is your favorite color?</h5>
+                    <span asp-validation-for="FaveColor"></span>
+                    <label asp-for="FaveColor"></label>
+                    <input class="form-control" asp-for="FaveColor">
+
+                    <a onclick="HideDivfaveColor()" class="btn btn-primary mt-2">Next</a>
+                </div>
+            </div>
+            <div id="breakFast" class="card shadow rounded mx-auto w-25" style="width: 18rem; display: none;">
+                <div class="card-body">
+                    <h5 class="card-title text-dark text-center">What did you have for breakfast?</h5>
+                    <span asp-validation-for="Breakfast"></span>
+                    <label asp-for="Breakfast"></label>
+                    <input class="form-control" asp-for="Breakfast">
+                    <a onclick="HideDivbreakFast()" class="btn btn-primary mt-2">Next</a>
+                </div>
+            </div>
+            <div id="avgSpeedSwallow" class="card shadow rounded mx-auto w-25" style="width: 18rem; display: none;">
+                <div class="card-body">
+                    <h5 class="card-title text-dark text-center">What is the average air/speed velocity of an unladen
+                        swallow?</h5>
+                    <span asp-validation-for="AvgSpeedSwallow"></span>
+                    <label asp-for="AvgSpeedSwallow"></label>
+                    <input class="form-control" asp-for="AvgSpeedSwallow">
+                    <a onclick="HideDivavgSpeedSwallow()" class="btn btn-primary mt-2">Next</a>
+                </div>
+            </div>
+            <div id="bestKPop" class="card shadow rounded mx-auto w-25" style="width: 18rem; display: none;">
+                <div class="card-body">
+                    <h5 class="card-title text-dark text-center">Which K-Pop band is the best?</h5>
+                    <input class="form-control" asp-for="KPop">
+                    <a onclick="HideDivbestKPop()" class="btn btn-primary mt-2">Next</a>
+                </div>
+            </div>
+            <div id="leastCommonBirthday" class="card shadow rounded mx-auto w-25" style="width: 18rem; display: none;">
+                <div class="card-body">
+                    <h5 class="card-title text-dark text-center">Which day of the year is the best day to be born on?
+                    </h5>
+                    <input class="form-control" asp-for="DOB">
+                    <button class="btn btn-success mt-2">Submit</button>
+                </div>
+            </div>
+        </form>
+        <div>
+            <h1 class="text-danger">Time Left:
+                <span id="countdown"></span>
+            </h1>
+        </div>
+
+    </div>
+</div>
+
+
+
+        @* Hidden Modal pops up when timer runs out *@
+        <div id="timeoutModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark">Sorry</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-dark">We are not able to confirm your identity at this time. You will now be automatically logged
+                            out.</p>
+                        <div class="modal-footer">
+                            <form id="timeout" asp-action="LogOut" method="post" asp-controller="Home">
+                                <input class="btn btn-success" type="submit" value="Ok">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<script>
+    function gameTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = 0;
+            }
+
+            if (timer === 0) {
+
+                $('#timeoutModal').modal('show');
+            }
+
+        }, 1000);
+    }
+
+    window.onload = function () {
+        var testseconds = 30,
+            display = document.querySelector('#countdown');
+        gameTimer(testseconds, display);
+    };
+
+</script>

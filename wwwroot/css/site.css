@@ -1,0 +1,123 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px !important;
+  background-color: rgb(159, 173, 185) !important;
+  color: white !important;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+#susanbar {
+  background-color: rgb(208, 189, 230) !important;
+}
+
+.white-btn {
+  background-color: white;
+}
+
+#convert-input {
+  width: 260px;
+}
+
+#game-background {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+    
+iframe {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  transform: translate(-50%, -50%) !important;
+}
+/*these media files may affect all media files, so be aware*/
+
+@media (min-aspect-ratio: 16/9) {
+  #game-background iframe {
+    /* height = 100 * (9 / 16) = 56.25 */
+    height: 56.25vw !important;
+  }
+}
+    
+@media (max-aspect-ratio: 16/9) {
+  #game-background iframe {
+    /* width = 100 / (9 / 16) = 177.777777 */
+    width: 177.78vh !important;
+  }
+}
+
+#game-container {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 100%;
+}

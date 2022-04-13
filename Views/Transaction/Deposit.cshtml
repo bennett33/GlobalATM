@@ -1,0 +1,91 @@
+@model Transaction
+<h1>Welcome</h1>
+@if (ViewBag.UserAccount.Balance != null)
+{
+    <p>Current balance: $@ViewBag.UserAccount.Balance</p>
+}
+<form asp-action="Add" asp-controller="Transaction" method="post">
+    <label asp-for="Amount">How much would you like to Deposit?</label>
+    <span asp-validation-for="Amount" class="text text-danger"></span>
+    <input asp-for="Amount">
+    <input type="hidden" asp-for="UserId">
+    <input type="submit" value="Submit">
+</form>
+
+@{
+    string message = TempData["Success"] as string;
+    if (message != null)
+    {
+        <div class="text-success">@message</div>
+    }
+}
+
+<hr>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+        @foreach (var t in @ViewBag.userAccount.Transactions)
+        {
+            <tr>
+                @if(@t.Amount < 0)
+                {
+                    <td class="text-danger">$@t.Amount</td>
+                }
+                else
+                {
+                    <td>$@t.Amount</td>
+                }
+                <td>@t.CreatedAt</td>
+            </tr>
+        }
+    
+</table>
+
+<div id="idleModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark">Session TimeOut</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-dark">You're being timed out due to inactivity. Please choose whether to stay signed in or to logout.</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Stay Signed In</button>
+                    <form id="timeout" asp-action="LogOut" method="post" asp-controller="Home">
+                        <input class="btn btn-secondary" type="submit" value="Logout">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function idleLogout() {
+        var t;
+        window.onload = resetTimer;
+        window.onmousemove = resetTimer;
+        window.onmousedown = resetTimer;
+        window.ontouchstart = resetTimer;
+        window.ontouchmove = resetTimer;
+        window.onclick = resetTimer;
+        window.onkeydown = resetTimer;
+        window.addEventListener('scroll', resetTimer, true);
+
+        function yourFunction() {
+            $('#idleModal').modal('show');
+        }
+
+        function resetTimer() {
+            clearTimeout(t);
+            t = setTimeout(yourFunction, 5000);  // time is in milliseconds
+        }
+    }
+    idleLogout();
+
+</script>

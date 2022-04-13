@@ -1,0 +1,38 @@
+
+    <div class="container-sm">
+        <h1>Foreign Currency Converter</h1>
+        <br>
+        <div class="form-group">
+            <h3>Please Select Your "From" Currency</h3>
+            <select class="form-select form-select-lg mb-3" id="Currency1">
+                <option value="AUD">AUD</option>
+                <option value="BGN">BGN</option>
+                <option value="CAD">CAD</option>
+                <option value="EUR">EUR</option>
+                <option value="MXN">MXN</option>
+                <option selected="selected" value="USD">USD</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <h3>How Much Do You Wish to Convert?</h3>
+            <input class="form-control" type="number" id="amount1" placeholder="0" value="1">
+        </div>
+        <br>
+        <div class="form-group">
+        <h3>Please Select Your "To" Currency</h3>
+        <select class="form-select form-select-lg mb-3" id="Currency2">
+            <option value="AUD">AUD</option>
+            <option value="BGN">BGN</option>
+            <option value="CAD">CAD</option>
+            <option value="EUR">EUR</option>
+            <option value="MXN">MXN</option>
+            <option value="USD">USD</option>
+        </select>
+        </div>
+        <label for="amount2">Your Converted Amount:</label>
+        <input class="form-control" type="number" id="amount2" placeholder="0" value="1">
+        <div class="rate-box"> <br>
+            <h4>Current Exchange Rate:</h4>
+            <div class="rate" id="rate"></div>
+        </div>
+    </div>

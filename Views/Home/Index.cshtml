@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model User
+<h2>Register</h2>
+<a asp-action="Login">Already Registered? Go ahead and login...</a>
+<hr>
+<form asp-action="register" method="post" asp-controller="Home" class="logreg">
+    <div class="form-group">
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="LastName" class="text-danger"></span>
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Birthday" class="text-danger"></span>
+        <label asp-for="Birthday"></label>
+        <input type="date" asp-for="Birthday" class="form-control">
+    </div>
+    <div>
+        <label asp-for="AccountAccuracy"></label>
+        <span asp-validation-for="AccountAccuracy" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <select onchange="hideCardOrAccount(this)" asp-for="AccountType" class="form-control">
+            <option value="" disabled selected>Select Account Type...</option>
+            <option value="Checking">Checking</option>
+            <option value="Saving">Saving</option>
+        </select>
+    </div>
+    <div class="form-group" id="CardNum" style="display: none;">
+        <span asp-validation-for="CardNumber" class="text-danger"></span>
+        <label asp-for="CardNumber"></label>
+        <input class="form-control" asp-for="CardNumber">
+    </div>
+    <div class="form-group" id="AccountNum" style="display: none;">
+        <span asp-validation-for="AccountNumber" class="text-danger"></span>
+        <label asp-for="AccountNumber"></label>
+        <input class="form-control" asp-for="AccountNumber">
+    </div>
+    <div>
+        <span asp-validation-for="SecurityQuestions" class="text-danger"></span>
+    </div>
+    <button class="btn btn-warning mb-2" type="button" data-toggle="collapse" data-target="#securityquestions"
+        aria-expanded="false" aria-controls="securityquestions">
+        Security Questions
+    </button>
+    <div id="securityquestions" class="collapse m-3">
+        <div class="form-group">
+            <span asp-validation-for="FaveColor" class="text-danger"></span>
+            <label class="text-warning" asp-for="FaveColor"></label>
+            <input class="form-control" asp-for="FaveColor">
+        </div>
+        <div class="form-group">
+            <span asp-validation-for="Breakfast" class="text-danger"></span>
+            <label class="text-warning" asp-for="Breakfast"></label>
+            <input class="form-control" asp-for="Breakfast">
+        </div>
+        <div class="form-group">
+            <span asp-validation-for="AvgSpeedSwallow" class="text-danger"></span>
+            <label class="text-warning" asp-for="AvgSpeedSwallow"></label>
+            <input class="form-control" asp-for="AvgSpeedSwallow">
+        </div>
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Pin" class="text-danger"></span>
+        <label asp-for="Pin">Pin (4 digits)</label>
+        <input class="form-control" asp-for="Pin">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Confirm" class="text-danger"></span>
+        <label asp-for="Confirm"></label>
+        <input class="form-control" asp-for="Confirm">
+    </div>
+    <input class="btn white-btn" type="submit" value="Register">
+</form>

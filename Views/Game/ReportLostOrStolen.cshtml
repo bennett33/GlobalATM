@@ -1,0 +1,13 @@
+@model User
+<h1>Do you think that your card is lost or stolen, @Model.FirstName?</h1>
+
+<div class="row">
+    <form asp-action="YesCardStolen" method="post" asp-controller="Game">
+        <input class="btn btn-success m-3" type="submit" value="Yes">
+    </form>
+    <form asp-action="Dashboard" method="get" asp-controller="Home">
+        <button class="btn btn-warning m-3">Return to Dashboard</button>
+    </form>
+</div>
+
+
